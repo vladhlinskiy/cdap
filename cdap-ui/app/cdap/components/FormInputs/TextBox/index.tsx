@@ -22,13 +22,25 @@ import ThemeWrapper from 'components/ThemeWrapper';
 
 const styles = (theme) => {
   return {
-    root: {
-      display: 'block',
-      width: '100%',
+    ':hover': {
+      borderColor: '#cccccc',
     },
     input: {
       padding: 10,
     },
+    root: {
+      '& $notchedOutline': {
+        borderColor: '#cccccc',
+      },
+      '&:hover $notchedOutline': {
+        borderColor: '#cccccc',
+      },
+      '&$focused $notchedOutline': {
+        border: '1px solid #098cf9',
+      },
+    },
+    focused: {},
+    notchedOutline: {},
   };
 };
 interface ITextBoxProps extends WithStyles<typeof styles> {
@@ -46,6 +58,7 @@ function TextBox({ value, onChange, placeholder, classes }: ITextBoxProps) {
   };
   return (
     <TextField
+      fullWidth
       variant="outlined"
       value={value}
       onChange={onChangeHandler}
